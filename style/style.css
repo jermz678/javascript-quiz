@@ -65,12 +65,18 @@ main {
 #multiplechoice {
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 #question {
-    background-color: #648381;
+    background-color: #FFBF46;
     font-size: 32px;
     border-radius: 15px;
+    display: flex;
+    justify-content: center;
+}
+#question h2{
+    justify-content: center;
 }
 #answerholder {
    display: flex;
@@ -79,7 +85,8 @@ main {
     border-radius: 15px;
     margin: 15px;
 }
-div p{
+div button{
+    width: 50vw;
     background-color: #648381;
     font-size: 28px;
     border-radius: 15px;
@@ -87,5 +94,7 @@ div p{
 }
 #feedback {
     background-color: #FFBF46;
+    font-size: 28px;
+    font-style: italic;
 }
 
