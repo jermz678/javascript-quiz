@@ -8,18 +8,22 @@ var proposedQuestion = document.getElementById("question");
 var userScore = document.getElementById("userscore");
 var timerDisplay = document.getElementById("timer");
 //array to hold the questions as objects
+// q = questions; a is possible answers; c is correct answer
 var questions = [
     {
-        q: "dlfkja;sldjfasl;dkj",
-        a: ["true", "false","falser", "most falsest"]
+        q: "What is a string",
+        a: ["An object", "your mom","numbers", "is 0 or more characters within quotes"],
+        c: "is 0 or more characters within quotes"
     },
     {
-        q: "sdkjas;lkdjfals;kdjf",
-        a: ["true", "false"]
+        q: "What is a string",
+        a: ["An object", "your mom","numbers", "is 0 or more characters within quotes"],
+        c: "is 0 or more characters within quotes"
     },
     {
-        q: "sdkjas;lkdjfals;kdjf",
-        a: ["true", "false"]
+        q: "What is a string",
+        a: ["An object", "your mom","numbers", "is 0 or more characters within quotes"],
+        c: "is 0 or more characters within quotes"
     }
 ]
 //variable to hold score
@@ -49,24 +53,21 @@ function countDown(){
 
 //create first question
 function timeForQuestions(){
-    countDown();
-    proposedQuestion.innerText = questions[0].q;
-    btn1.innerText = questions[0].a[1];
-    btn2.innerText = questions[0].a[2];
-    btn3.innerText = questions[0].a[3];
-    btn4.addEventListener.innerText = questions[0].a[0];
-    if ( "click" === true){
+    for (i = 0; i < questions.length; i++){
+     countDown();
+    proposedQuestion.innerText = questions[i].q;
+    btn1.innerText = questions[i].a[1];
+    btn2.innerText = questions[i].a[2];
+    btn3.innerText = questions[i].a[3];
+    btn4.innerText = questions[i].a[0];
+    if ( ){
         updatedScore + 10;
+    }else{
+        updatedScore - 10;
     }
-    
-
-
-
-
-
+    }
 }
 
-//timeForQuestions()
 
 
 
