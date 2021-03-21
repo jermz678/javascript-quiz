@@ -4,17 +4,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: pointer;
 }
 body {
     
     background-color: #FFBF46;
     font-family: 'Roboto', sans-serif;
+    
 }
 
 /*header styling*/
 header {
     width: 100vw;
-    height: 80px;
+    height: 100px;
     position: absolute;
     top: 0;
     background-color: #8ACB88;
@@ -43,12 +45,12 @@ footer{
 
 /*hero styling*/
 #userscore {
-    margin-left: 25px;
+    margin-left: 50px;
     float: left;
     font-size: 30px;
 }
 #timer {
-    margin-right: 25px;
+    margin-right: 50px;
     float: right;
     font-size: 30px;
 }
@@ -65,7 +67,6 @@ main {
 #multiplechoice {
     display: flex;
     flex-wrap: wrap;
-    
 }
 
 #question {
