@@ -1,48 +1,62 @@
 var questionIndex = 0;
 
 //variables from html
- 
-var btn1 = document.getElementById("btn1");
-var btn2 = document.getElementById("btn2");
-var btn3 = document.getElementById("btn3");
-var btn4= document.getElementById("btn4");
+var btn1 = document.getElementById("a");
+var btn2 = document.getElementById("b");
+var btn3 = document.getElementById("c");
+var btn4 = document.getElementById("d");
 var proposedQuestion = document.getElementById("question-holder");
 var userScore = document.getElementById("userscore");
 var timerDisplay = document.getElementById("timer");
+
 //array to hold the questions as objects
-var questions = [
+var question1 = [
     {
         q: "What is a string",
         a: [
-            { text: "An object", correct: false},
-            { text: "your mom", correct: false},
-            { text: "numbers", correct: false},
-            { text: "is 0 or more characters within quotes", correct: true}]
-        },
+            { text: "An object"},
+            { text: "your mom"},
+            { text: "numbers" },
+            { text: "is 0 or more characters within quotes"}
+        ]
+    }
+]
+var question2 = [
     {
         q: "!!What is a string",
         a: [
-            { text: "An object", correct: false},
-            { text: "your mom", correct: false},
-            { text: "numbers", correct: false},
-            { text: "is 0 or more characters within quotes", correct: true}]
-        },
+            { text: "An object"},
+            { text: "your mom"},
+            { text: "numbers"},
+            { text: "is 0 or more characters within quotes"}
+        ]
+    }
+]
+var question3 = [
     {
         q: "!!!What is a string",
         a: [
-            { text: "An object", correct: false},
-            { text: "your mom", correct: false},
-            { text: "numbers", correct: false},
-            { text: "is 0 or more characters within quotes", correct: true}]
-        },
+            { text: "An object"},
+            { text: "your mom"},
+            { text: "numbers"},
+            { text: "is 0 or more characters within quotes"}
+        ]
+    }
 ];
+console.log(question3)
+// array to hold answers
+
+ var answers = [ "a", "b", "c", "d"];
+ console.log(answers)
+
 
 //variable to hold score
 updatedScore = 0;
 userScore.innerText = "Score " + updatedScore;
 
 //variable to hold correct answer
-var correctAnswer = questions[questionIndex].a[3].text;
+//var correctAnswer = question1[questionIndex].a[3].text;
+//console.log(correctAnswer)
 
 //beginning of quiz
 function startQuiz (){
@@ -61,46 +75,41 @@ function countDown(){
          }
     }, 1000);
 }
-console.log(questions[questionIndex].a[3].text)
 
-
-
-function checkAnswer(x,y,z,q){
+function checkAnswer(event){
     
-    if ( x === correctAnswer){
-        
-        alert("halllelujah");
-    }
+   if(event.target.id === answers[3]){
+       alert("yesh");
+        updatedScore + 10;
+   }
 
+    console.log(event.target.id)
+    console.log(answers[3])
 
 
 
 }
-var x = btn1;
-var y = btn2;
-var z = btn3;
-var q = btn4;
+
 function timeForQuestions(){
-    proposedQuestion.innerText = questions[questionIndex].q;
-    btn1.innerText = questions[questionIndex].a[0].text;
-    btn2.innerText = questions[questionIndex].a[1].text;
-    btn3.innerText = questions[questionIndex].a[2].text;
-    btn4.innerText = questions[questionIndex].a[3].text;
+    proposedQuestion.innerText = question1[questionIndex].q;
+    btn1.innerText = question1[questionIndex].a[0].text;
+    btn2.innerText = question1[questionIndex].a[1].text;
+    btn3.innerText = question1[questionIndex].a[2].text;
+    btn4.innerText = question1[questionIndex].a[3].text;
     countDown();  
-    btn1.addEventListener("click", function(){
-        checkAnswer();
+    btn1.addEventListener("click", function(event){
+        checkAnswer(event);
     });
-    btn2.addEventListener("click", function(){
-        checkAnswer();
+    btn2.addEventListener("click", function(event){
+        checkAnswer(event);
     });
-    btn3.addEventListener("click", function(){
-        checkAnswer();
+    btn3.addEventListener("click", function(event){
+        checkAnswer(event);
     });
-    btn4.addEventListener("click", function(){
-        checkAnswer();
+    btn4.addEventListener("click", function(event){
+        checkAnswer(event);
     });
 }
-console.log(q);
 
 //button event listener
 proposedQuestion.addEventListener("click", function(){
