@@ -62,7 +62,16 @@ var questions = [
             { text: "String"}
             
         ]
-    }
+    },
+    {
+        q: "",
+        a: [
+            {text: ""},
+            {text: ""},
+            {text: ""},
+            {text: ""}
+        ]
+    }   
     
 ];
 
@@ -70,8 +79,8 @@ var questions = [
 var answers = [ "d", "a", "c", "c", "b"];
  
 //variable to hold score
-var highScore = 0
-var updatedScore = 0;
+var highScore = 20;
+var updatedScore = "";
 userScore.innerText = "Score " + updatedScore;
 
 //variable to hold time left on clock
@@ -86,6 +95,7 @@ function countDown(){
             if ( timeLeft <= 0){
                 clearInterval(interval);
                 endQuiz();
+                timerDisplay.innerHTML = "Time Left 0";
             }
     }, 1000);
 }
@@ -105,6 +115,12 @@ function endQuiz() {
     //questionDiv.appendChild(saveHighScore);
 
 }
+// function to show highscore
+function bestScore(){
+    
+}
+
+
 
 //checking if answer is correct and going to next question
 function checkAnswer(event){

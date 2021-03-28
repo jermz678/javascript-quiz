@@ -48,6 +48,16 @@ footer{
     height: 200px;
     
 }
+
+.hero-upper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.highscore {
+    font-size: 30px;
+    
+}
 .userscore {
     margin-left: 50px;
     float: left;
@@ -101,7 +111,6 @@ main {
     padding-top: 25px;
     text-align: center;
 }
-
 
 .answerholder {
    display: flex;
@@ -161,4 +170,12 @@ main {
         height: auto;
         text-align: center;
     }
+    .userscore{
+        margin-top: 20px;
+    }
+    .timer {
+        margin-top: 20px;
+    }
+} .multiplechoice{
+    margin-top: 25px;
 }
