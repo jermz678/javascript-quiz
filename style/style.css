@@ -44,12 +44,12 @@ footer{
 }
 
 /*hero styling*/
-#userscore {
+.userscore {
     margin-left: 50px;
     float: left;
     font-size: 30px;
 }
-#timer {
+.timer {
     margin-right: 50px;
     float: right;
     font-size: 30px;
@@ -64,36 +64,48 @@ main {
     justify-content: center;
 }
 
-#multiplechoice {
+.multiplechoice {
     display: flex;
     flex-wrap: wrap;
 }
 
-#question {
+.question {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #FFBF46;
     font-size: 32px;
     border-radius: 15px;
-    display: flex;
-    justify-content: center;
 }
-#question h2{
-    justify-content: center;
+
+.quiz-starter {
+    font-size: 30px;
+    background-color: #648381;
+    border-radius: 15px;
+    padding: 0 15px 0 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
-#answerholder {
+
+
+.answerholder {
    display: flex;
    flex-wrap: wrap;
-    font-size: 28px;
-    border-radius: 15px;
-    margin: 15px;
+   justify-content: center;
+   font-size: 28px;
+   border-radius: 15px;
+   margin: 15px;
 }
-div button{
+.answer{
     width: 50vw;
     background-color: #648381;
     font-size: 28px;
     border-radius: 15px;
     margin: 15px;
 }
-#feedback {
+
+.feedback {
     background-color: #FFBF46;
     font-size: 28px;
     font-style: italic;
