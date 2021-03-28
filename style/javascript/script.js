@@ -1,5 +1,5 @@
 var questionIndex = 0;
-
+var answerIndex = 0;
 //variables from html
 var btn1 = document.getElementById("a");
 var btn2 = document.getElementById("b");
@@ -26,9 +26,10 @@ var questions = [
         q: "!!What is a string",
         a: [
             { text: "An object"},
+            { text: "is 0 or more characters within quotes"},
             { text: "your mom"},
-            { text: "numbers"},
-            { text: "is 0 or more characters within quotes"}
+            { text: "numbers"}
+            
         ]
     },
     {
@@ -36,15 +37,16 @@ var questions = [
         a: [
             { text: "An object"},
             { text: "your mom"},
-            { text: "numbers"},
-            { text: "is 0 or more characters within quotes"}
+            { text: "is 0 or more characters within quotes"},
+            { text: "numbers"}
+            
         ]
     }
 ];
 
 // array to hold answers
 
- var answers = [ "a", "b", "c", "d"];
+ var answers = [ "d", "b", "c"];
  
 
 //variable to hold score
@@ -66,17 +68,18 @@ function countDown(){
 
 function checkAnswer(event){
     
-    if(event.target.id === answers[3]){
+    if(event.target.id === answers[answerIndex]){
         updatedScore += 10;
         userScore.innerText = "Score " + updatedScore;
-        feedback.innerText = "Correct";
+        feedback.innerHTML = "Correct";
         console.log(updatedScore)
     }
     else {
         timeLeft -= 10;
-        feedback.innertext = "Wrong";
+        feedback.innerHTML = "Wrong";
     }
     questionIndex++;
+    answerIndex++;
         proposedQuestion.innerText = questions[questionIndex].q;
         btn1.innerText = questions[questionIndex].a[0].text;
         btn2.innerText = questions[questionIndex].a[1].text;
