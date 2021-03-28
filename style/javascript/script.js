@@ -1,6 +1,9 @@
 var questionIndex = 0;
 var answerIndex = 0;
 //variables from html
+var highScore1 = document.getElementById("highscore-1");
+var highScore2 = document.getElementById("highscore-2");
+var highScore3 = document.getElementById("highscore-3");
 var btn1 = document.getElementById("a");
 var btn2 = document.getElementById("b");
 var btn3 = document.getElementById("c");
@@ -62,25 +65,25 @@ var questions = [
             { text: "String"}
             
         ]
-    },
+    },  
     {
         q: "",
         a: [
-            {text: ""},
-            {text: ""},
-            {text: ""},
-            {text: ""}
+            { text: ""},
+            { text: ""},
+            { text: ""},
+            { text: ""}
+            
         ]
-    }   
-    
+    }    
 ];
 
 // array to hold answers
 var answers = [ "d", "a", "c", "c", "b"];
  
 //variable to hold score
-var highScore = 20;
-var updatedScore = "";
+var highScore = "";
+var updatedScore = 0;
 userScore.innerText = "Score " + updatedScore;
 
 //variable to hold time left on clock
@@ -92,7 +95,7 @@ function countDown(){
     var interval = setInterval(function(){
     timeLeft--;
     timerDisplay.innerHTML = "Time Left " + timeLeft; 
-            if ( timeLeft <= 0){
+            if ( timeLeft <= 0 || questionIndex === 5 || answerIndex === 5){
                 clearInterval(interval);
                 endQuiz();
                 timerDisplay.innerHTML = "Time Left 0";
@@ -100,27 +103,46 @@ function countDown(){
     }, 1000);
 }
 
+var topScores;
+
+// function to show highscore
+function bestScore(){
+     topScores = localStorage.getItem(highScore, updatedScore);    
+}
+
+//function to create a try again button
+var restart = document.createElement("button");
+function tryAgain (){
+    //var restart = document.createElement("button");
+    restart.classList.add("quiz-starter");
+    restart.innerHTML = "Try Again!"
+    questionDiv.appendChild(restart);
+    
+}
 //function to end quiz
 function endQuiz() {
     proposedQuestion.innerText = "Great Job! Save your score and see if you are in the top 3!!"
-    btn1.remove();
-    btn2.remove();
-    btn3.remove();
-    btn4.remove();
+    //btn1.remove();
+    //btn2.remove();
+    //btn3.remove();
+    //btn4.remove();
+    tryAgain();
+    bestScore();
+    console.log(topScores)
+    restart.addEventListener("click", function(){
+        timeForQuestions();
+    })
+    highScore1.innerText = "Top HighScore: " + topScores; 
     feedback.innerHTML = "";
-    console.log(highScore);
+    if(topScores <= topScores){
+        highScore2.innerText = "Second HighScore: " + topScores;
+    }
     localStorage.setItem(highScore, updatedScore);
    // var saveHighScore = document.createElement("FORM");
     //saveHighScore.innertext = "whatsups dfapsoasj";
     //questionDiv.appendChild(saveHighScore);
 
 }
-// function to show highscore
-function bestScore(){
-    
-}
-
-
 
 //checking if answer is correct and going to next question
 function checkAnswer(event){
@@ -136,26 +158,26 @@ function checkAnswer(event){
     }  
     questionIndex++;
     answerIndex++;
-    if( questionIndex === 5){
-        endQuiz();
-    }
+    console.log(answerIndex)
     proposedQuestion.innerText = questions[questionIndex].q;
     btn1.innerText = questions[questionIndex].a[0].text;
     btn2.innerText = questions[questionIndex].a[1].text;
     btn3.innerText = questions[questionIndex].a[2].text;
-    btn4.innerText = questions[questionIndex].a[3].text;  
-
-    
-    
+    btn4.innerText = questions[questionIndex].a[3].text;     
+    if(questionIndex === 5 || answerIndex === 5){
+        questionIndex === 0;
+    }
 }
-
-
 
  //beginning first question
 function timeForQuestions(){
-    startQuiz.remove();
+   // startQuiz.remove();
     countDown();
-    
+    questionIndex = 0;
+    answerIndex = 0;
+    updatedScore = 0;
+    userScore.innerText = "Score " + updatedScore;
+    bestScore();
     for(var i = 0; i < questions.length; i++){
     proposedQuestion.innerText = questions[questionIndex].q;
     btn1.innerText = questions[questionIndex].a[0].text;
@@ -187,3 +209,4 @@ startQuiz.addEventListener("click", function(){
     timeForQuestions();
 }
 );
+
