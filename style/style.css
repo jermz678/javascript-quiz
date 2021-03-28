@@ -71,7 +71,7 @@ main {
     width: 100vw;
 }
 
-.question {
+.question-div {
     margin: auto;
     display: flex;
     flex-wrap: wrap;
