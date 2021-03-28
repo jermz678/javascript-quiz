@@ -62,6 +62,7 @@ var questions = [
             
         ]
     }
+    
 ];
 
 // array to hold answers
@@ -74,55 +75,74 @@ userScore.innerText = "Score " + updatedScore;
 //variable to hold time left on clock
 var timeleft
 
+//function to end quiz
+function endQuiz() {
+    
+    
+        proposedQuestion.innerText = "Great Job! Save your score and see if you are in the top 3!!"
+        btn1.remove();
+        btn2.remove();
+        btn3.remove();
+        btn4.remove();
+        feedback.innerHTML = "";
+    
+}
 //create timer function
 function countDown(){
-    timeLeft = 50;
+    timeLeft = 5;
     var interval = setInterval(function(){
     timeLeft--;
-    timerDisplay.innerHTML = "Time remaining " + timeLeft; 
+    timerDisplay.innerHTML = "Time Left " + timeLeft; 
             if ( timeLeft === 0){
-         clearInterval(interval);
-         }
+                endQuiz();
+                clearInterval(interval);
+            }
     }, 1000);
 }
 
+//checking if answer is correct and going to next question
 function checkAnswer(event){
     
     if(event.target.id === answers[answerIndex]){
         updatedScore += 10;
         userScore.innerText = "Score " + updatedScore;
-        feedback.innerHTML = "Correct";
-        console.log(updatedScore)
+        feedback.innerHTML = "Correct! 👍";
+    
     }
-    else {
+    else{
         timeLeft -= 10;
-        feedback.innerHTML = "Wrong";
+        feedback.innerHTML = "Wrong 👎";
+        
     }
     questionIndex++;
     answerIndex++;
-        proposedQuestion.innerText = questions[questionIndex].q;
-        btn1.innerText = questions[questionIndex].a[0].text;
-        btn2.innerText = questions[questionIndex].a[1].text;
-        btn3.innerText = questions[questionIndex].a[2].text;
-        btn4.innerText = questions[questionIndex].a[3].text;
-        
+    
+    proposedQuestion.innerText = questions[questionIndex].q;
+    btn1.innerText = questions[questionIndex].a[0].text;
+    btn2.innerText = questions[questionIndex].a[1].text;
+    btn3.innerText = questions[questionIndex].a[2].text;
+    btn4.innerText = questions[questionIndex].a[3].text;  
+    
+    if ( questionIndex === 4 || timeLeft >= 0){endQuiz();
+};
 }
- 
+
+ //beginning first question
 function timeForQuestions(){
     startQuiz.remove();
     countDown(); 
-    //for(var i = 0; i < questions.length; i++){
+    for(var i = 0; i < questions.length; i++){
     proposedQuestion.innerText = questions[questionIndex].q;
     btn1.innerText = questions[questionIndex].a[0].text;
     btn2.innerText = questions[questionIndex].a[1].text;
     btn3.innerText = questions[questionIndex].a[2].text;
     btn4.innerText = questions[questionIndex].a[3].text;
     }
+}    
     
     
     
-    
-
+//button event listener
 
 btn1.addEventListener("click", function(event){
     checkAnswer(event);
@@ -137,10 +157,6 @@ btn4.addEventListener("click", function(event){
     checkAnswer(event);
 });
 
-
-
-
-//button event listener
 startQuiz.addEventListener("click", function(){
     timeForQuestions();
 }
