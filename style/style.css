@@ -44,6 +44,10 @@ footer{
 }
 
 /*hero styling*/
+.hero {
+    height: 200px;
+    
+}
 .userscore {
     margin-left: 50px;
     float: left;
@@ -86,10 +90,12 @@ main {
     border-radius: 15px;
     padding: 0 15px 0 15px;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    outline: none;
 }
 
 .question-holder{
     font-weight: bold;
+    padding-top: 25px;
 }
 
 
@@ -107,6 +113,7 @@ main {
     font-size: 28px;
     border-radius: 15px;
     margin: 15px;
+    outline: none;
 }
 
 .feedback {
@@ -121,17 +128,24 @@ main {
         font-size: 28px;
         height: auto;
     }
+    .question-holder{
+        text-align: center;
+    }
 }
 @media screen and (max-width: 622px) {
     header {
         font-size: 24px;
         height: auto;
     }
+    .hero {
+        padding-top: 25px;
+    }
+    
 }
 @media screen and (max-width: 530px) {
     header {
         font-size: 22px;
         height: auto;
-        align-items: center;
+        text-align: center;
     }
 }

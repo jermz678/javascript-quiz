@@ -14,49 +14,69 @@ var feedback = document.getElementById("feedback");
 //array to hold the questions as objects
 var questions = [
     {
-        q: "What is a string",
+        q: "0 or more characters within quotes is a ....",
         a: [
-            { text: "An object"},
-            { text: "your mom"},
-            { text: "numbers" },
-            { text: "is 0 or more characters within quotes"}
+            { text: "Object"},
+            { text: "Array"},
+            { text: "Numbers" },
+            { text: "String"}
         ]
     },
     {
-        q: "!!What is a string",
+        q: "Value of true or false is a .....",
         a: [
-            { text: "An object"},
-            { text: "is 0 or more characters within quotes"},
-            { text: "your mom"},
-            { text: "numbers"}
+            { text: "Boolean"},
+            { text: "Null"},
+            { text: "Numbers"},
+            { text: "Object"}
             
         ]
     },
     {
-        q: "!!!What is a string",
+        q: "An Invalid Value is....",
         a: [
-            { text: "An object"},
-            { text: "your mom"},
-            { text: "is 0 or more characters within quotes"},
-            { text: "numbers"}
+            { text: "Object"},
+            { text: "Numbers"},
+            { text: "Null"},
+            { text: "String"}
+            
+        ]
+    },
+    {
+        q: "An entity with properties and type is a.....",
+        a: [
+            { text: "String"},
+            { text: "Array"},
+            { text: "Object"},
+            { text: "Boolean"}
+            
+        ]
+    },
+    {
+        q: "A special variable that holds a list of items is a....",
+        a: [
+            { text: "Numbers"},
+            { text: "Array"},
+            { text: "Boolean"},
+            { text: "String"}
             
         ]
     }
 ];
 
 // array to hold answers
-
- var answers = [ "d", "b", "c"];
+var answers = [ "d", "a", "c", "c", "b"];
  
-
 //variable to hold score
 updatedScore = 0;
 userScore.innerText = "Score " + updatedScore;
 
+//variable to hold time left on clock
 var timeleft
+
 //create timer function
 function countDown(){
-    timeLeft = 100;
+    timeLeft = 50;
     var interval = setInterval(function(){
     timeLeft--;
     timerDisplay.innerHTML = "Time remaining " + timeLeft; 
