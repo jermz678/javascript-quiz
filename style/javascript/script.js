@@ -168,7 +168,7 @@ function tryAgain (){
 
 //function to end quiz
 function endQuiz() {
-    proposedQuestion.innerText = "Great Job! Save your score and see if you are in the top 3!!"
+    proposedQuestion.innerText = "Great Job! Your score made it in the top 3!!"
     btn1.style.visibility = "hidden";
     btn2.style.visibility = "hidden";
     btn3.style.visibility = "hidden";
