@@ -7,10 +7,8 @@
     cursor: pointer;
 }
 body {
-    
     background-color: #FFBF46;
     font-family: 'Roboto', sans-serif;
-    
 }
 
 /*header styling*/
@@ -46,7 +44,6 @@ footer{
 /*hero styling*/
 .hero {
     height: 200px;
-    
 }
 
 .hero-upper{
@@ -54,20 +51,23 @@ footer{
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
 .highscore {
     font-size: 30px;
-    
 }
+
 .userscore {
     margin-left: 50px;
     float: left;
     font-size: 30px;
 }
+
 .timer {
     margin-right: 50px;
     float: right;
     font-size: 30px;
 }
+
 /*main styling*/
 main {
     width: 100vw;
@@ -120,6 +120,7 @@ main {
    border-radius: 15px;
    margin: 50px;
 }
+
 .answer{
     width: 35vw;
     background-color: #648381;
@@ -136,6 +137,7 @@ main {
     justify-content: center;
 
 }
+
 .feedback {
     display: flex;
     justify-content: center;

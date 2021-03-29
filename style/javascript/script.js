@@ -1,5 +1,7 @@
+//variables for indexs to acces arrays
 var questionIndex = 0;
 var answerIndex = 0;
+
 //variables from html
 var highScore1 = document.getElementById("highscore-1");
 var highScore2 = document.getElementById("highscore-2");
@@ -33,7 +35,6 @@ var questions = [
             { text: "Null"},
             { text: "Numbers"},
             { text: "Object"}
-            
         ]
     },
     {
@@ -43,7 +44,6 @@ var questions = [
             { text: "Numbers"},
             { text: "Null"},
             { text: "String"}
-            
         ]
     },
     {
@@ -53,7 +53,6 @@ var questions = [
             { text: "Array"},
             { text: "Object"},
             { text: "Boolean"}
-            
         ]
     },
     {
@@ -63,7 +62,6 @@ var questions = [
             { text: "Array"},
             { text: "Boolean"},
             { text: "String"}
-            
         ]
     },  
     {
@@ -73,17 +71,12 @@ var questions = [
             { text: ""},
             { text: ""},
             { text: ""}
-            
         ]
     }    
 ];
 
 // array to hold answers
 var answers = [ "d", "a", "c", "c", "b"];
- 
-//variable to hold score
-var updatedScore = 0;
-userScore.innerText = "Score " + updatedScore;
 
 //hiding buttons
 btn1.style.visibility = "hidden";
@@ -112,11 +105,14 @@ function countDown(){
 //variable to hold score
 var updatedScore = 0;
 userScore.innerText = "Score " + updatedScore;
+
 // array to hold printed scores
 var printedScores = ["0", "0", "0"];
 highScore1.innerText = "Top HighScore: " + printedScores[0];
 highScore2.innerText =  "Second HighScore: " + printedScores[1];
 highScore3.innerText = "Third HighScore: " + printedScores[2];
+
+//setting scores in local storage as a starting point
 localStorage.setItem("highScore", printedScores[0]);
 localStorage.setItem("secondScore", printedScores[1]);
 localStorage.setItem("thirdScore", printedScores[2]);
@@ -124,38 +120,41 @@ localStorage.setItem("thirdScore", printedScores[2]);
 // function to show highscore
 function bestScore(){
     if(parseInt(localStorage.getItem("highScore")) < updatedScore){
-            
+            //updating 3rd score
             localStorage.setItem("thirdScore", localStorage.getItem("secondScore"));
             printedScores[2] = localStorage.getItem("thirdScore");
             highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore")
-
+            //updating 2nd score
             localStorage.setItem("secondScore", localStorage.getItem("highScore"));
             printedScores[1] = localStorage.getItem("secondScore");
             highScore2.innerText = "Second HighScore: " + localStorage.getItem("secondScore");
-
+            //updating high score
             var currentHighScore = updatedScore.toString();
             localStorage.setItem("highScore", currentHighScore);
             highScore1.innerText = "Top HighScore: " + localStorage.getItem("highScore");
             printedScores[0] = currentHighScore;
     
-        } else if (parseInt(localStorage.getItem("secondScore")) < updatedScore){
+    } else if (parseInt(localStorage.getItem("secondScore")) < updatedScore){
+            //updating 3rd score if high score doesn't change
             localStorage.setItem("thirdScore", localStorage.getItem("secondScore"));
             printedScores[2] = localStorage.getItem("thirdScore");
             highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore");
-    
+            //updating 2nd score if high score doesn't change
             var currentSecondScore = updatedScore.toString();
             localStorage.setItem("secondScore", currentSecondScore);
             highScore2.innerText = "Second HighScore: " + localStorage.getItem("secondScore");
             printedScores[1] = currentSecondScore;
     
-        } else if (parseInt(localStorage.getItem("thirdScore")) < updatedScore){
+    } else if (parseInt(localStorage.getItem("thirdScore")) < updatedScore){
+            //updating 3rd score if high score and second score doesn't change
             var currentThirdScore = updatedScore.toString();
             localStorage.setItem("thirdScore", currentThirdScore);
             highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore");
             printedScores[2] = currentThirdScore;
     
-        }else{
-            proposedQuestion.innerText = " You did not earn a high score. Try again!"
+    }else{
+        //if no score can be updated
+        proposedQuestion.innerText = " You did not earn a high score. Try again!"
         }
 }
 
@@ -165,8 +164,8 @@ function tryAgain (){
     restart.classList.add("quiz-starter");
     restart.innerHTML = "Try Again!"
     questionDiv.appendChild(restart);
-    
 }
+
 //function to end quiz
 function endQuiz() {
     proposedQuestion.innerText = "Great Job! Save your score and see if you are in the top 3!!"
@@ -226,11 +225,9 @@ function timeForQuestions(){
     btn3.innerText = questions[questionIndex].a[2].text;
     btn4.innerText = questions[questionIndex].a[3].text;
     }
-    
 }    
     
 //button event listener
-
 btn1.addEventListener("click", function(event){
     checkAnswer(event);
 });
