@@ -89,7 +89,7 @@ var timeLeft = 0;
 var interval;
 //create timer function
 function countDown(){
-    timeLeft = 10;
+    timeLeft = 50;
     interval = setInterval(function(){
     timeLeft--;
     timerDisplay.innerHTML = "Time Left " + timeLeft; 
