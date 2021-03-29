@@ -82,9 +82,14 @@ var questions = [
 var answers = [ "d", "a", "c", "c", "b"];
  
 //variable to hold score
-var highScore = "";
 var updatedScore = 0;
 userScore.innerText = "Score " + updatedScore;
+
+//hiding buttons
+btn1.style.visibility = "hidden";
+btn2.style.visibility = "hidden";
+btn3.style.visibility = "hidden";
+btn4.style.visibility = "hidden";
 
 //variable to hold time left on clock
 var timeLeft = 0;
@@ -103,17 +108,60 @@ function countDown(){
     }, 1000);
 }
 
-var topScores;
-
 // function to show highscore
+var printedScores = ["0", "0", "0"];
+highScore1.innerText = "Top HighScore: " + printedScores[0];
+highScore2.innerText =  "Second HighScore: " + printedScores[1];
+highScore3.innerText = "Third HighScore: " + printedScores[2];
+
 function bestScore(){
-     topScores = localStorage.getItem(highScore, updatedScore);    
+    localStorage.setItem("highScore", printedScores[0]);
+    localStorage.setItem("secondScore", printedScores[1]);
+    localStorage.setItem("thirdScore", printedScores[2]);
+    
+    if(parseInt(localStorage.getItem("highScore")) < updatedScore){
+       
+       // if ( parseInt(localStorage.getItem("highScore")) <  parseInt(localStorage.getItem("secondScore"))){
+            localStorage.setItem("secondScore", localStorage.getItem("highScore"));
+            printedScores[1] = localStorage.getItem("secondScore");
+            highScore2.innerText = "Second HighScore: " + localStorage.getItem("secondScore");
+       // }
+
+        if ( parseInt(localStorage.getItem("secondScore")) <  parseInt(localStorage.getItem("thirdScore"))){
+            localStorage.setItem("thirdScore", localStorage.getItem("secondScore"));
+            printedScores[2] = localStorage.getItem("thirdScore");
+            highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore")
+        }
+
+        var currentHighScore = updatedScore.toString();
+        localStorage.setItem("highScore", currentHighScore);
+        highScore1.innerText = "Top HighScore: " + localStorage.getItem("highScore");
+        printedScores[0] = currentHighScore;
+
+    } else if (parseInt(localStorage.getItem("secondScore")) < updatedScore){
+        localStorage.setItem("thirdScore", localStorage.getItem("secondScore"));
+        printedScores[2] = localStorage.getItem("thirdScore");
+        highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore");
+
+        var currentSecondScore = updatedScore.toString();
+        localStorage.setItem("secondScore", currentSecondScore);
+        highScore2.innerText = "Second HighScore: " + localStorage.getItem("secondScore");
+        printedScores[1] = currentSecondScore;
+
+    } else if (parseInt(localStorage.getItem("thirdScore")) < updatedScore){
+        var currentThirdScore = updatedScore.toString();
+        localStorage.setItem("thirdScore", currentThirdScore);
+        highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore");
+        printedScores[2] = currentThirdScore;
+
+    }else{
+        proposedQuestion.innerText = " You did not earn a high score. Try again!"
+    }
 }
 
 //function to create a try again button
-var restart = document.createElement("button");
+var restart = document.createElement("button");  
 function tryAgain (){
-    //var restart = document.createElement("button");
     restart.classList.add("quiz-starter");
     restart.innerHTML = "Try Again!"
     questionDiv.appendChild(restart);
@@ -122,26 +170,15 @@ function tryAgain (){
 //function to end quiz
 function endQuiz() {
     proposedQuestion.innerText = "Great Job! Save your score and see if you are in the top 3!!"
-    //btn1.remove();
-    //btn2.remove();
-    //btn3.remove();
-    //btn4.remove();
+    btn1.style.visibility = "hidden";
+    btn2.style.visibility = "hidden";
+    btn3.style.visibility = "hidden";
+    btn4.style.visibility = "hidden";
     tryAgain();
     bestScore();
-    console.log(topScores)
     restart.addEventListener("click", function(){
         timeForQuestions();
     })
-    highScore1.innerText = "Top HighScore: " + topScores; 
-    feedback.innerHTML = "";
-    if(topScores <= topScores){
-        highScore2.innerText = "Second HighScore: " + topScores;
-    }
-    localStorage.setItem(highScore, updatedScore);
-   // var saveHighScore = document.createElement("FORM");
-    //saveHighScore.innertext = "whatsups dfapsoasj";
-    //questionDiv.appendChild(saveHighScore);
-
 }
 
 //checking if answer is correct and going to next question
@@ -150,7 +187,6 @@ function checkAnswer(event){
         updatedScore += 10;
         userScore.innerText = "Score " + updatedScore;
         feedback.innerHTML = "Correct! 👍";
-        console.log(timeLeft)
     }
     else{
         timeLeft -= 10;
@@ -158,7 +194,7 @@ function checkAnswer(event){
     }  
     questionIndex++;
     answerIndex++;
-    console.log(answerIndex)
+    
     proposedQuestion.innerText = questions[questionIndex].q;
     btn1.innerText = questions[questionIndex].a[0].text;
     btn2.innerText = questions[questionIndex].a[1].text;
@@ -171,13 +207,18 @@ function checkAnswer(event){
 
  //beginning first question
 function timeForQuestions(){
-   // startQuiz.remove();
+    startQuiz.remove();
+    restart.remove();
     countDown();
     questionIndex = 0;
     answerIndex = 0;
     updatedScore = 0;
     userScore.innerText = "Score " + updatedScore;
-    bestScore();
+    //bestScore();
+    btn1.style.visibility = "visible";
+    btn2.style.visibility = "visible";
+    btn3.style.visibility = "visible";
+    btn4.style.visibility = "visible";
     for(var i = 0; i < questions.length; i++){
     proposedQuestion.innerText = questions[questionIndex].q;
     btn1.innerText = questions[questionIndex].a[0].text;
@@ -187,8 +228,6 @@ function timeForQuestions(){
     }
     
 }    
-    
-    
     
 //button event listener
 
