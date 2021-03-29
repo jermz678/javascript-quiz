@@ -100,6 +100,7 @@ function countDown(){
     interval = setInterval(function(){
     timeLeft--;
     timerDisplay.innerHTML = "Time Left " + timeLeft; 
+    //stopping quiz if time is up or out of questions
             if ( timeLeft <= 0 || questionIndex === 5 || answerIndex === 5){
                 clearInterval(interval);
                 endQuiz();
@@ -116,54 +117,46 @@ var printedScores = ["0", "0", "0"];
 highScore1.innerText = "Top HighScore: " + printedScores[0];
 highScore2.innerText =  "Second HighScore: " + printedScores[1];
 highScore3.innerText = "Third HighScore: " + printedScores[2];
+localStorage.setItem("highScore", printedScores[0]);
+localStorage.setItem("secondScore", printedScores[1]);
+localStorage.setItem("thirdScore", printedScores[2]);
+
 // function to show highscore
 function bestScore(){
-
-    //storing beginning scores
-    localStorage.setItem("highScore", printedScores[0]);
-    localStorage.setItem("secondScore", printedScores[1]);
-    localStorage.setItem("thirdScore", printedScores[2]);
-    
-    //making the string from local storage a number to compare to updatedScore
     if(parseInt(localStorage.getItem("highScore")) < updatedScore){
-       
-        //comparing the 3 high scores and updating with if statements
-       // if ( parseInt(localStorage.getItem("highScore")) <  parseInt(localStorage.getItem("secondScore"))){
-        //    localStorage.setItem("secondScore", localStorage.getItem("highScore"));
-       //     printedScores[1] = localStorage.getItem("secondScore");
-        //    highScore2.innerText = "Second HighScore: " + localStorage.getItem("secondScore");
-       // }
+            
+            localStorage.setItem("thirdScore", localStorage.getItem("secondScore"));
+            printedScores[2] = localStorage.getItem("thirdScore");
+            highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore")
 
-       // if ( parseInt(localStorage.getItem("secondScore")) <  parseInt(localStorage.getItem("thirdScore"))){
-       //     localStorage.setItem("thirdScore", localStorage.getItem("secondScore"));
-       //     printedScores[2] = localStorage.getItem("thirdScore");
-        //    highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore")
-       // }
+            localStorage.setItem("secondScore", localStorage.getItem("highScore"));
+            printedScores[1] = localStorage.getItem("secondScore");
+            highScore2.innerText = "Second HighScore: " + localStorage.getItem("secondScore");
 
-        var currentHighScore = updatedScore.toString();
-        localStorage.setItem("highScore", currentHighScore);
-        highScore1.innerText = "Top HighScore: " + localStorage.getItem("highScore");
-        printedScores[0] = currentHighScore;
-
-    } else if (parseInt(localStorage.getItem("secondScore")) < currentHighScore){
-       // localStorage.setItem("thirdScore", localStorage.getItem("secondScore"));
-      ///  printedScores[2] = localStorage.getItem("thirdScore");
-      //  highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore");
-
-        var currentSecondScore = updatedScore.toString();
-        localStorage.setItem("secondScore", currentSecondScore);
-        highScore2.innerText = "Second HighScore: " + localStorage.getItem("secondScore");
-        printedScores[1] = currentSecondScore;
-
-    }else if (parseInt(localStorage.getItem("thirdScore")) < currentSecondScore){
-        var currentThirdScore = updatedScore.toString();
-        localStorage.setItem("thirdScore", currentThirdScore);
-        highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore");
-        printedScores[2] = currentThirdScore;
-
-    }//else{
-       // proposedQuestion.innerText = " You did not earn a high score. Try again!"
-   // }
+            var currentHighScore = updatedScore.toString();
+            localStorage.setItem("highScore", currentHighScore);
+            highScore1.innerText = "Top HighScore: " + localStorage.getItem("highScore");
+            printedScores[0] = currentHighScore;
+    
+        } else if (parseInt(localStorage.getItem("secondScore")) < updatedScore){
+            localStorage.setItem("thirdScore", localStorage.getItem("secondScore"));
+            printedScores[2] = localStorage.getItem("thirdScore");
+            highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore");
+    
+            var currentSecondScore = updatedScore.toString();
+            localStorage.setItem("secondScore", currentSecondScore);
+            highScore2.innerText = "Second HighScore: " + localStorage.getItem("secondScore");
+            printedScores[1] = currentSecondScore;
+    
+        } else if (parseInt(localStorage.getItem("thirdScore")) < updatedScore){
+            var currentThirdScore = updatedScore.toString();
+            localStorage.setItem("thirdScore", currentThirdScore);
+            highScore3.innerText = "Third HighScore: " + localStorage.getItem("thirdScore");
+            printedScores[2] = currentThirdScore;
+    
+        }else{
+            proposedQuestion.innerText = " You did not earn a high score. Try again!"
+        }
 }
 
 //function to create a try again button
@@ -216,7 +209,7 @@ function checkAnswer(event){
 function timeForQuestions(){
     startQuiz.remove();
     restart.remove();
-    clearInterval(interval);git 
+    clearInterval(interval);
     countDown();
     questionIndex = 0;
     answerIndex = 0;
